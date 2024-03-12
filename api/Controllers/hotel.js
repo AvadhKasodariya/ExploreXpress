@@ -4,6 +4,7 @@ export const createHotel = async(req, res, next) => {
     const newHotel = new Hotel(req.body);
   //let savedHotel; // Define savedHotel outside the try block
 
+  
   try {
     const savedHotel = await newHotel.save();
     res.status(200).json(savedHotel);

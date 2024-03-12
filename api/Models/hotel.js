@@ -4,6 +4,7 @@ import mongoose from "mongoose";
 
 const { Schema } = mongoose;
 
+
 // Hotel Schema
 
 const HotelSchema = new Schema({

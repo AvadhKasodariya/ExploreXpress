@@ -8,6 +8,7 @@ const router = express.Router();
 // Create Hotels
 router.post("/", createHotel);
 
+
 // Update Hotels
 router.put("/:id", updateHotel);
 
