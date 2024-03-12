@@ -16,6 +16,7 @@ const SearchItem = () => {
         <span className="si-features">
           Private room • 1 king bed • Free WiFi
         </span>
+        
         <span className="si-cancel-op">Flexible cancellation</span>
         <span className="si-cancel-op-subtitle">
           Cancel for free until 24 hours before check-in.
