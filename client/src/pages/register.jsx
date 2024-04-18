@@ -134,19 +134,19 @@ export default function () {
 
                             <FormControl mb="5" isInvalid={error.lname}>
                                 <FormLabel>Last name</FormLabel>
-                                <Input name="lname" type='text' placeholder='Enter First name' value={input.lname} onChange={handleChange} />
+                                <Input name="lname" type='text' placeholder='Enter Last name' value={input.lname} onChange={handleChange} />
                                 <FormErrorMessage>{error.lname}</FormErrorMessage>
                             </FormControl>
 
                             <FormControl mb="5" isInvalid={error.phone}>
                                 <FormLabel>Phone</FormLabel>
-                                <Input name="phone" type='tel' placeholder='Enter First name' value={input.phone} onChange={handleChange} />
+                                <Input name="phone" type='tel' placeholder='Enter phone number' value={input.phone} onChange={handleChange} />
                                 <FormErrorMessage>{error.phone}</FormErrorMessage>
                             </FormControl>
 
                             <FormControl mb="5" isInvalid={error.email}>
                                 <FormLabel>Email</FormLabel>
-                                <Input name="email" type='email' placeholder='Enter email' value={input.email} onChange={handleChange} />
+                                <Input name="email" type='email' placeholder='Enter email address' value={input.email} onChange={handleChange} />
                                 <FormErrorMessage>{error.email}</FormErrorMessage>
                             </FormControl>
 

@@ -34,6 +34,10 @@ export default function () {
 
   const handleSubmit = async (eve) => {
     eve.preventDefault()
+    if (!validateCardNumber(card)) {
+      alert('Invalid card number');
+      return;
+    }  
     const amount = bill
     const start = new Date(sessionStorage.getItem('start'))
     const end = new Date(sessionStorage.getItem('end'))
@@ -88,7 +92,7 @@ export default function () {
         <form onSubmit={handleSubmit}>
           <VStack spacing={6} alignItems={'stretch'} py={5}>
             <FormControl>
-              <Input type="number" placeholder="Car holder number" required value={card} onChange={(eve) => setCard(eve.target.value)} />
+              <Input type="number" placeholder="Card holder number" required value={card} onChange={(eve) => setCard(eve.target.value)} />
             </FormControl>
             <FormControl>
               <Input type="number" min={0} max={999} placeholder="CVV" required value={cvv} onChange={(eve) => setCvv(eve.target.value)} />
@@ -119,4 +123,15 @@ export default function () {
       </GridItem>
     </Grid>
   </App>
+}
+
+const validateCardNumber = (cardNumber) => {
+  // Check if the card number starts with a valid prefix and has a valid length
+  if ((cardNumber.startsWith('4') && cardNumber.length === 16) ||  // Visa: 16 digits
+      (cardNumber.startsWith('5') && cardNumber.length === 16)) { // Mastercard: 16 digits
+    return true;
+  }
+
+  // If neither Visa nor Mastercard, return false
+  return false;
 }

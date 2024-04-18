@@ -21,9 +21,9 @@ import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons'
 import { useAuthenticatedUser, useLogout } from '../../hook/auth'
 
 const Links = [
-  {link:'Home', to:'/'},
-  {link:'About', to:'/about'},
-  {link:'Contact', to:'/contact'},
+  // {link:'Home', to:'/'},
+  // {link:'About', to:'/about'},
+  // {link:'Contact', to:'/contact'},
 ]
 
 const NavLink = (props) => {

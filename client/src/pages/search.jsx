@@ -120,7 +120,7 @@ export default function () {
               :
               hotels.map(hotel => <Card maxW='sm' key={hotel._id}>
                 <CardBody >
-                  <Link to="/details/555">
+                  <Link to={`/details/${hotel._id}`}>
                     <Image
                       src={hotel.photos.length === 0? '/placeholder.png' : hotel.photos[0]}
                       alt='hotel'

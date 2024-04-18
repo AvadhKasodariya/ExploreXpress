@@ -33,7 +33,7 @@ export default function () {
         <Table variant='simple'>
           <Thead>
             <Tr>
-              <Th>S#</Th>
+              <Th>Id</Th>
               <Th>Hotel</Th>
               <Th>City</Th>
               <Th>Price</Th>
