@@ -1,7 +1,7 @@
 import mongoose from "mongoose"
 
 export default async function () {
-    mongoose.connect('mongodb://127.0.0.1:27017', { useNewUrlParser: true, useUnifiedTopology: true, dbName: "explorer" });
+    mongoose.connect('mongodb+srv://pinalbalar152:mongodb@cluster0.uajupt2.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0', { useNewUrlParser: true, useUnifiedTopology: true, dbName: "explorer" });
     mongoose.connection.once('connected', () => {
         console.log('MongoDB connected successfully');
     });

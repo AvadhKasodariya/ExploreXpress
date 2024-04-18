@@ -4,13 +4,28 @@ import Notification from '../controller/notificationController.js'
 
 export default class {
     static async getBookings(req, res) {
-        const bookings = await Booking.find().populate('user')
-        res.json(bookings)
+        const { month } = req.query;
+
+        let query = {};
+
+        if (month !== '') {
+            const startDate = new Date(Date.UTC(new Date().getFullYear(), month - 1, 1));
+            const endDate = new Date(Date.UTC(new Date().getFullYear(), month, 0, 23, 59, 59));
+            query = { createdAt: { $gte: startDate, $lte: endDate } };
+        }
+
+        try {
+            const documents = await Booking.find(query).populate('user');
+            res.json(documents);
+        } catch (error) {
+            console.error('Error fetching documents:', error);
+            res.status(500).json({ error: 'Internal server error' });
+        }
     }
     static async findBooking(req, res) {
         const { id } = req.params
         try {
-            const bookings = await Booking.find({ user: id }).populate(['user','hotel'])
+            const bookings = await Booking.find({ user: id }).populate(['user', 'hotel'])
             res.json(bookings)
         } catch (error) {
             res.status(400).json(error)

@@ -7,6 +7,9 @@ export default class {
         res.json(tours)
     }
     static async addTour(req, res) {
+
+        console.log('here');
+        console.log(req.body);
         try {
             const tour = await (await new Tour(req.body).save()).populate('hotel')
             res.json(tour)
@@ -28,6 +31,22 @@ export default class {
         if (!tour) return res.status(404).json("Tour not found");
         tour.deleteOne()
         res.json("record deleted")
+    }
+    static async removeTourHotel(req, res) {
+
+        const {tourID, hotelID} = req.params
+        try {
+            const tour = await Tour.findByIdAndUpdate(tourID, { $pull: { hotel: hotelID } });
+
+            if (!tour) {
+                return res.status(404).json({ error: 'Tour not found' });
+            }
+
+            return res.json({ message: 'Hotel removed from tour' });
+        } catch (error) {
+            console.error('Error deleting hotel from tour:', error);
+            return res.status(500).json({ error: 'Internal server error' });
+        }
     }
     static async findTour(req, res) {
         const { destination, price, person, start, end } = req.body
@@ -66,5 +85,19 @@ export default class {
         }))
         res.json(response)
 
+    }
+    static async getTourHotels(req, res) {
+        const { id } = req.params
+        const tour = await Tour.findById(id).populate('hotel');
+        
+
+        if(tour){
+            tour.hotel.forEach(hotel=>{
+                if (hotel.photos?.length > 0) {
+                    hotel.photos = hotel.photos.map(photo => `http://127.0.0.1:${process.env.PORT}/${photo}`)
+                }
+            })
+        }
+        res.json(tour)
     }
 }

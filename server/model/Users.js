@@ -6,6 +6,7 @@ const schema = new mongoose.Schema({
     lname: String,
     image: { type: String, default: 'avatar.jpg' },
     role: { type: String, enum: ['ADMIN', 'USER'], default: 'USER' },
+    phone: String,
     email: String,
     password: String,
 }, { timestamps: true })
