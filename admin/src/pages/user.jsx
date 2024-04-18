@@ -48,7 +48,7 @@ export default function () {
       <Table variant='simple'>
         <Thead>
           <Tr>
-            <Th>S#</Th>
+            <Th>Id</Th>
             <Th>Full name</Th>
             <Th>Email</Th>
             <Th>Phone</Th>

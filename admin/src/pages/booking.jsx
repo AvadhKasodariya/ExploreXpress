@@ -8,6 +8,8 @@ import {
   TableContainer,
   Button,
   useToast,
+  HStack,
+  Select
 } from '@chakra-ui/react'
 import axios from 'axios';
 import { useEffect, useState } from 'react';
@@ -19,18 +21,25 @@ import { FiTrash } from 'react-icons/fi'
 
 export default function () {
 
-  const [bookings, setBookings] = useState([])
+  const [hotels, sethotels] = useState([])
+  const [month, setMonth] = useState('all')
   const toast = useToast()
 
-  const fetchBookings = async () => {
-    const response = await axios.get('/booking')
-    setBookings(response.data)
+  const handleChange = (eve) => {
+    const month = eve.target.value
+    setMonth(month)
+    fetchhotels(month)
   }
 
-  const deleteBooking = async (bookingID) => {
-    const filterBookings = bookings.filter(booking => booking._id !== bookingID)
-    setBookings(filterBookings)
-    const repsonse = await axios.delete(`/booking/${bookingID}`)
+  const fetchhotels = async (month='all') => {
+    const response = await axios.get(`/booking?month=${month}`)
+    sethotels(response.data)
+  }
+
+  const deleteBooking = async (hotelID) => {
+    const filterhotels = hotels.filter(booking => booking._id !== hotelID)
+    sethotels(filterhotels)
+    const repsonse = await axios.delete(`/tour/hotel/${hotelID}`)
     toast({
       title: 'record deleted',
       status: 'success',
@@ -40,15 +49,31 @@ export default function () {
   }
 
   useEffect(() => {
-    fetchBookings()
+    fetchhotels()
   }, [])
 
   return <>
+    <HStack align="end" mb="5" >
+      <Select placeholder='All' width="max-content" bg="white" value={month} onChange={handleChange}>
+        <option value='1'>January</option>
+        <option value='2'>February</option>
+        <option value='3'>March</option>
+        <option value='4'>April</option>
+        <option value='5'>May</option>
+        <option value='6'>June</option>
+        <option value='7'>July</option>
+        <option value='8'>August</option>
+        <option value='9'>September</option>
+        <option value='10'>October</option>
+        <option value='11'>November</option>
+        <option value='12'>December</option>
+      </Select>
+    </HStack>
     <TableContainer bg="white" rounded="lg">
       <Table variant='simple'>
         <Thead>
           <Tr>
-            <Th>S#</Th>
+            <Th>Id</Th>
             <Th>Full name</Th>
             <Th>Email</Th>
             <Th>Phone</Th>
@@ -61,12 +86,12 @@ export default function () {
         <Tbody>
 
           {
-            bookings.length === 0 ?
+            hotels.length === 0 ?
               <Tr>
                 <Td colSpan="7" textAlign="center">No booking found</Td>
               </Tr>
               :
-              bookings.map((booking, index) =>{
+              hotels.map((booking, index) => {
 
                 const diff = new Date(booking.end) - new Date(booking.start)
                 const duration = Math.ceil(diff / (1000 * 60 * 60 * 24))

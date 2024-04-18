@@ -11,6 +11,7 @@ import User from './pages/user'
 import Hotel from './pages/hotel'
 import Booking from './pages/booking'
 import Tour from './pages/tour'
+import TourHotels from './pages/tourHotel'
 import axios from 'axios'
 import io from 'socket.io-client'
 
@@ -48,6 +49,7 @@ export default function App() {
           <Route path='/hotel' Component={Hotel} />
           <Route path='/booking' Component={Booking} />
           <Route path='/tour' Component={Tour} />
+          <Route path='/tour/:id' Component={TourHotels} />
         </Route>
       </Route>
 

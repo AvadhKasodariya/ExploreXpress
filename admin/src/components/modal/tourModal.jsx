@@ -21,9 +21,9 @@ export default function ({ tour, disclosure, isEditing, editTour, addTour }) {
 
     const fields = [
         { name: 'name', type: 'text', required: true },
-        { name: 'price', type: 'number', attributes: { min: 1 }, required: true },
+        // { name: 'price', type: 'number', attributes: { min: 1 }, required: true },
         { name: 'description', type: 'text', required: false },
-        { name: 'duration', type: 'number', attributes: { min: 1 }, required: true },
+        // { name: 'duration', type: 'number', attributes: { min: 1 }, required: true },
     ]
     const initialState = {
         name: '',
@@ -132,7 +132,7 @@ export default function ({ tour, disclosure, isEditing, editTour, addTour }) {
                             }
                             <FormControl mb="2">
                                 <FormLabel textTransform="capitalize">Hotel</FormLabel>
-                                <Select value={inputs.hotel._id} name='hotel' placeholder='select hotel' required onChange={handleChange}>
+                                <Select multiple height={100} value={inputs.hotel._id} name='hotel' required onChange={handleChange}>
                                     {
                                         hotels.map(hotel => <option key={hotel._id} value={hotel._id}>{hotel.title}</option>)
                                     }

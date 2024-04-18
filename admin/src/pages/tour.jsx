@@ -16,6 +16,7 @@ import { FiPenTool, FiTrash } from 'react-icons/fi'
 import FloatingButton from '../components/buttons/floatingButton';
 import TourModel from '../components/modal/tourModal';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 
 export default function () {
@@ -79,12 +80,12 @@ export default function () {
       <Table variant='simple'>
         <Thead>
           <Tr>
-            <Th>S#</Th>
+            <Th>Id</Th>
             <Th>Name</Th>
-            <Th>Price</Th>
+            {/* <Th>Price</Th> */}
             <Th>Description</Th>
-            <Th>Duration</Th>
-            <Th>Hotel</Th>
+            {/* <Th>Duration</Th> */}
+            <Th>Hotels</Th>
             <Th>Action</Th>
           </Tr>
         </Thead>
@@ -100,10 +101,12 @@ export default function () {
                 <Tr key={tour._id}>
                   <Td>{index + 1}</Td>
                   <Td>{tour.name}</Td>
-                  <Td>{tour.price}</Td>
+                  {/* <Td>{tour.price}</Td> */}
                   <Td>{tour.description || '-'}</Td>
-                  <Td>{tour.duration} day</Td>
-                  <Td>{tour.hotel.title}</Td>
+                  {/* <Td>{tour.duration} day</Td> */}
+                  <Td>
+                    <Button as={Link} to={tour._id} colorScheme='yellow'>View</Button>
+                  </Td>
                   <Td>
                     <Button marginRight="1" bg="green" color="white" onClick={() => openModelForEditingRecord(tour)}><FiPenTool /></Button>
                     <Button bg="red" color="white" onClick={() => deleteTour(tour._id)}><FiTrash /></Button>
